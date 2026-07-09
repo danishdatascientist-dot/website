@@ -14,6 +14,7 @@ import Blog from './components/Blog';
 import YouTube from './components/YouTube';
 import Contact from './components/Contact';
 import Footer from './components/Footer';
+import Chatbot from './components/Chatbot';
 import './globals.css';
 
 export default function Home() {
@@ -34,6 +35,7 @@ export default function Home() {
           <Contact />
         </main>
         <Footer />
+        <Chatbot />
       </div>
     </ThemeProvider>
   );
