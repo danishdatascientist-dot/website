@@ -1,0 +1,11 @@
+# cPanel deployment artifacts, unused on Vercel
+.htaccess
+cgi-bin/
+
+# The FastAPI backend is not deployed here yet. Vercel builds root api/*.py as
+# serverless functions, and this one cannot build: api/requirements.txt omits
+# langchain, langchain-openai, langchain-pinecone, pinecone and python-dotenv,
+# and api/index.py raises at import when OPEN_API_KEY / PINECONE_API_KEY are
+# unset. Nothing calls it now that the chatbot is removed. To deploy it, fix
+# those deps, set the env vars in Vercel, then drop this entry.
+api/
