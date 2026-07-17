@@ -37,7 +37,7 @@ const certificateCategory = (title: string) => {
 };
 
 export function getCertificates(): Certificate[] {
-  const root = path.join(process.cwd(), "public", "certificates", "all");
+  const root = path.join(process.cwd(), "public", "credentials", "all");
   if (!fs.existsSync(root)) return [];
 
   return fs.readdirSync(root, { withFileTypes: true }).flatMap((folder) => {
@@ -48,7 +48,7 @@ export function getCertificates(): Certificate[] {
       .map((file) => {
         const title = file.name.replace(/\.[^.]+$/, "");
         const type = file.name.toLowerCase().endsWith(".pdf") ? "pdf" as const : "image" as const;
-        const url = `/certificates/all/${encodeURIComponent(folder.name)}/${encodeURIComponent(file.name)}`;
+        const url = `/credentials/all/${encodeURIComponent(folder.name)}/${encodeURIComponent(file.name)}`;
         const issuer = knownIssuers[title] ?? "Issuer to be confirmed";
         return {
           title,
