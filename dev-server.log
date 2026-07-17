@@ -6,24 +6,20 @@
   - Local:        http://localhost:3000
 
  ✓ Starting...
- ✓ Ready in 1226ms
+ ✓ Ready in 1219ms
  ○ Compiling / ...
  ✓ Compiled / in 2.2s (689 modules)
- GET / 200 in 2369ms
- ✓ Compiled in 128ms (305 modules)
- ✓ Compiled /resume in 95ms (683 modules)
- GET /resume 200 in 195ms
- GET / 200 in 73ms
- ✓ Compiled /favicon.ico in 205ms (417 modules)
- GET /favicon.ico 200 in 248ms
- ✓ Compiled in 140ms (312 modules)
- ✓ Compiled in 110ms (312 modules)
- ✓ Compiled /services in 211ms (728 modules)
- ✓ Compiled in 138ms (742 modules)
- GET / 200 in 72ms
- GET /favicon.ico 200 in 9ms
- GET / 200 in 44ms
- ✓ Compiled /about in 214ms (751 modules)
- GET /about 200 in 268ms
- GET / 200 in 57ms
- GET /about 200 in 50ms
+ GET / 200 in 2375ms
+ ✓ Compiled in 125ms (305 modules)
+ GET / 200 in 41ms
+ ○ Compiling /experience ...
+ ✓ Compiled /experience in 1347ms (674 modules)
+ GET /experience 200 in 1435ms
+ ✓ Compiled /education in 88ms (684 modules)
+ GET /education 200 in 152ms
+ ✓ Compiled /certificates in 81ms (689 modules)
+ GET /certificates 200 in 154ms
+ ✓ Compiled /projects/[slug] in 102ms (701 modules)
+ GET /projects/hardware-store-global-inventory 200 in 369ms
+ ✓ Compiled /services/ai-tutoring in 269ms (716 modules)
+ GET /services/ai-tutoring 200 in 386ms
