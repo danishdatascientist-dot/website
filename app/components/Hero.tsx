@@ -24,7 +24,7 @@ const Hero: React.FC = () => {
             </h1>
             
             <p className="text-xl md:text-2xl text-gray-600 dark:text-gray-300 mb-8 max-w-2xl">
-              Transforming ideas into intelligent solutions with 6+ years of experience in AI, Machine Learning, and Data Science
+              Building practical AI agents, RAG systems, and data-driven applications for real-world problems
             </p>
             
             <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start mb-8">
@@ -70,7 +70,7 @@ const Hero: React.FC = () => {
                 <Youtube size={24} />
               </a>
               <a
-                href="mailto:contact@danishagentic.com"
+                href="mailto:danish.datascientist@gmail.com"
                 className="p-3 bg-white dark:bg-gray-800 rounded-full shadow-lg hover:shadow-xl hover:scale-110 transition-all text-gray-700 dark:text-gray-300 hover:text-primary dark:hover:text-primary"
               >
                 <Mail size={24} />

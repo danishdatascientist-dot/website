@@ -21,7 +21,7 @@ const Footer: React.FC = () => {
     },
     {
       name: 'Email',
-      url: 'mailto:me@danishagentic.com',
+      url: 'mailto:danish.datascientist@gmail.com',
       icon: <Mail size={20} />
     }
   ];

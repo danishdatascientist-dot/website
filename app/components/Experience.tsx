@@ -6,7 +6,7 @@ const Experience: React.FC = () => {
   const experiences = [
     {
       title: "Agentic AI & Data Science Consultant",
-      company: "Freelancing",
+      company: "Danish Agentic Solutions",
       period: "DEC 2018 – SEP 2024",
       location: "Remote",
       achievements: [
@@ -17,15 +17,15 @@ const Experience: React.FC = () => {
       technologies: ["Python", "OpenAI API", "LangChain", "Streamlit", "FAISS", "TensorFlow"]
     },
     {
-      title: "E-Commerce Strategy Consultant",
+      title: "E-Commerce Data Analyst",
       company: "Baby Product Category | UK",
       period: "JAN 2021 – DEC 2023",
       location: "Remote",
       achievements: [
-        "Led sales strategy and operational automation for baby products business",
-        "Introduced data-driven decision-making frameworks",
-        "Improved conversion rates and marketing ROI",
-        "Directed cross-functional team for product sourcing and sales"
+        "Analyzed product, sales, and marketplace data for a UK baby products business",
+        "Tracked pricing, inventory levels, and product performance to support day-to-day decisions",
+        "Prepared recurring reports on sales trends, conversion performance, and marketing results",
+        "Conducted market and competitor research to inform product sourcing and pricing"
       ],
       technologies: ["Data Analytics", "Amazon FBA", "Market Research", "Business Intelligence"]
     }

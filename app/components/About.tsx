@@ -5,8 +5,8 @@ const About: React.FC = () => {
   const highlights = [
     {
       icon: <Award className="w-6 h-6" />,
-      title: "6+ Years Experience",
-      description: "In AI/ML and Data Science"
+      title: "Applied AI Solutions",
+      description: "From prototypes to production workflows"
     },
     {
       icon: <Users className="w-6 h-6" />,
@@ -59,9 +59,8 @@ const About: React.FC = () => {
             
             <div className="text-lg text-gray-600 dark:text-gray-300 mb-8 space-y-4">
               <p>
-                I'm an Agentic AI Developer and Data Scientist with over 6 years of experience 
-                delivering high-impact solutions in machine learning, predictive modeling, NLP, 
-                and AI-driven automation.
+                I am an Agentic AI Developer and Data Scientist focused on building practical
+                solutions in machine learning, predictive modeling, NLP, and AI-driven automation.
               </p>
               
               <p>

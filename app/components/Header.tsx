@@ -13,8 +13,11 @@ const Header: React.FC = () => {
     { name: 'Experience', href: '#experience' },
     { name: 'Projects', href: '#projects' },
     { name: 'Skills', href: '#skills' },
-    { name: 'Education', href: '#education' },
-    { name: 'Resume', href: '#resume' },
+    { name: 'Certificates', href: '#certificates' },
+    { name: 'E-Commerce', href: '#ecommerce' },
+    { name: 'Services', href: '#services' },
+    { name: 'Blog', href: '#blog' },
+    { name: 'Videos', href: '#youtube' },
     { name: 'Contact', href: '#contact' },
   ];
 
@@ -22,6 +25,8 @@ const Header: React.FC = () => {
     const element = document.querySelector(href);
     if (element) {
       element.scrollIntoView({ behavior: 'smooth' });
+    } else {
+      window.location.href = `/${href}`;
     }
     setIsMenuOpen(false);
   };
@@ -35,12 +40,12 @@ const Header: React.FC = () => {
           </div>
 
           {/* Desktop Navigation */}
-          <nav className="hidden md:flex space-x-8">
+          <nav className="hidden lg:flex items-center gap-4">
             {navItems.map((item) => (
               <button
                 key={item.name}
                 onClick={() => scrollToSection(item.href)}
-                className="text-gray-700 hover:text-primary dark:text-gray-300 dark:hover:text-primary transition-colors"
+                className="text-sm text-gray-700 hover:text-primary dark:text-gray-300 dark:hover:text-primary transition-colors"
               >
                 {item.name}
               </button>
@@ -58,7 +63,7 @@ const Header: React.FC = () => {
             
             <button
               onClick={() => setIsMenuOpen(!isMenuOpen)}
-              className="md:hidden p-2 rounded-lg bg-gray-100 dark:bg-gray-800 hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors"
+              className="lg:hidden p-2 rounded-lg bg-gray-100 dark:bg-gray-800 hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors"
             >
               {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
             </button>
@@ -67,7 +72,7 @@ const Header: React.FC = () => {
 
         {/* Mobile Navigation */}
         {isMenuOpen && (
-          <nav className="md:hidden py-4 border-t border-gray-200 dark:border-gray-700">
+          <nav className="lg:hidden py-4 border-t border-gray-200 dark:border-gray-700">
             <div className="flex flex-col space-y-2">
               {navItems.map((item) => (
                 <button

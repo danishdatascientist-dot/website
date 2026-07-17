@@ -112,8 +112,8 @@ const Resume: React.FC = () => {
                 <div className="mt-8 pt-6 border-t border-gray-200 dark:border-gray-700">
                   <div className="flex justify-center space-x-8 text-sm text-gray-600 dark:text-gray-300">
                     <div>
-                      <div className="font-semibold text-primary">6+</div>
-                      <div>Years Experience</div>
+                      <div className="font-semibold text-primary">AI & Data</div>
+                      <div>Solutions Focus</div>
                     </div>
                     <div>
                       <div className="font-semibold text-primary">100+</div>

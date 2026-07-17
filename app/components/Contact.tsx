@@ -36,8 +36,8 @@ const Contact: React.FC = () => {
     {
       icon: <Mail className="w-6 h-6" />,
       title: "Email",
-      value: "me@danishagentic.com",
-      link: "mailto:me@danishagentic.com"
+      value: "danish.datascientist@gmail.com",
+      link: "mailto:danish.datascientist@gmail.com"
     },
     {
       icon: <MapPin className="w-6 h-6" />,

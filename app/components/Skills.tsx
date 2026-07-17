@@ -8,30 +8,30 @@ const Skills: React.FC = () => {
       title: "AI & Machine Learning",
       icon: <Brain className="w-6 h-6" />,
       skills: [
-        { name: "Machine Learning", level: 95 },
-        { name: "Deep Learning", level: 90 },
-        { name: "LLM Applications", level: 92 },
-        { name: "AI Agents & Workflows", level: 91 }
+        "Machine Learning",
+        "Deep Learning",
+        "LLM Applications",
+        "AI Agents & Workflows"
       ]
     },
     {
       title: "Programming & Frameworks",
       icon: <Code className="w-6 h-6" />,
       skills: [
-        { name: "Python", level: 96 },
-        { name: "LangChain/LangGraph", level: 93 },
-        { name: "TensorFlow/Keras", level: 88 },
-        { name: "FastAPI", level: 85 }
+        "Python",
+        "LangChain/LangGraph",
+        "TensorFlow/Keras",
+        "FastAPI"
       ]
     },
     {
       title: "Data & Analytics",
       icon: <Database className="w-6 h-6" />,
       skills: [
-        { name: "Data Analysis", level: 94 },
-        { name: "Statistical Modeling", level: 89 },
-        { name: "Data Visualization", level: 87 },
-        { name: "Data Wrangling", level: 83 }
+        "Data Analysis",
+        "Statistical Modeling",
+        "Data Visualization",
+        "Data Wrangling"
       ]
     }
   ];
@@ -86,24 +86,14 @@ const Skills: React.FC = () => {
                 </h3>
               </div>
               
-              <div className="space-y-4">
+              <div className="flex flex-wrap gap-3">
                 {category.skills.map((skill, i) => (
-                  <div key={i}>
-                    <div className="flex justify-between items-center mb-2">
-                      <span className="text-gray-700 dark:text-gray-300 font-medium">
-                        {skill.name}
-                      </span>
-                      <span className="text-primary font-semibold">
-                        {skill.level}%
-                      </span>
-                    </div>
-                    <div className="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-2">
-                      <div 
-                        className="bg-gradient-to-r from-primary to-secondary h-2 rounded-full transition-all duration-1000 ease-out"
-                        style={{ width: `${skill.level}%` }}
-                      ></div>
-                    </div>
-                  </div>
+                  <span
+                    key={i}
+                    className="rounded-full border border-primary/20 bg-primary/10 px-4 py-2 text-sm font-medium text-gray-700 dark:text-gray-200"
+                  >
+                    {skill}
+                  </span>
                 ))}
               </div>
             </div>
