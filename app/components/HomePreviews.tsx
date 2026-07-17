@@ -59,7 +59,7 @@ const HomePreviews: React.FC = () => (
         <PreviewHeading href="/projects" title="Featured Projects" description="Selected AI agents, RAG applications, and analytics projects." />
         <div className="grid gap-6 text-left md:grid-cols-2 lg:grid-cols-5">
           {projects.slice(0, 5).map((project) => (
-            <Link key={project.slug} href={`/projects#${project.slug}`} className="card-tilt rounded-2xl bg-white p-6 shadow-lg dark:bg-gray-900">
+            <Link key={project.slug} href={`/projects/${project.slug}`} className="card-tilt rounded-2xl bg-white p-6 shadow-lg dark:bg-gray-900">
               <FolderKanban className="mb-4 text-primary" />
               <h3 className="text-lg font-bold text-gray-900 dark:text-white">{project.title}</h3>
               <p className="mt-3 line-clamp-4 text-sm text-gray-600 dark:text-gray-300">{project.problem}</p>

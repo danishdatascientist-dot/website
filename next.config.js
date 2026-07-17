@@ -1,25 +1,11 @@
 /** @type {import('next').NextConfig} */
-const isDev = process.env.NODE_ENV === "development";
-
 const nextConfig = {
-  // Emit a plain static site to out/. Every page here is prerendered and there
-  // are no route handlers, so nothing needs a Node server at runtime.
-  images: {
-    // The export target has no image optimization server.
-    unoptimized: true,
-  },
   eslint: {
     ignoreDuringBuilds: true,
   },
 };
 
-if (!isDev) {
-  nextConfig.output = "export";
-}
-
-// Rewrites are not applied to a static export. They exist only to proxy the
-// local FastAPI backend while running `next dev`.
-if (isDev) {
+if (process.env.NODE_ENV === "development") {
   nextConfig.rewrites = async () => [
     {
       source: "/api/py/:path*",

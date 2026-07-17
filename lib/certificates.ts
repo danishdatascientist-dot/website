@@ -10,6 +10,7 @@ export type Certificate = {
   type: "image" | "pdf";
   filename: string;
   status: string;
+  category: string;
 };
 
 const knownIssuers: Record<string, string> = {
@@ -23,6 +24,16 @@ const knownIssuers: Record<string, string> = {
   "Introduction to Programming Using Python": "Microsoft Technology Associate",
   "Machine Learning": "Stanford Online",
   "Machine Learning with Scikit-Learn": "LinkedIn Learning",
+};
+
+const certificateCategory = (title: string) => {
+  if (/amazon|freelanc|marketing/i.test(title)) return "E-Commerce & Business";
+  if (/power bi|analytics|data analysis|pandas/i.test(title)) return "Data Analytics";
+  if (/langgraph|model context|generative|ai for everyone|artificial intelligence/i.test(title)) return "Generative AI";
+  if (/machine learning|neural network/i.test(title)) return "Machine Learning";
+  if (/python|programming/i.test(title)) return "Python";
+  if (/cloud|aws/i.test(title)) return "Cloud";
+  return "Professional Development";
 };
 
 export function getCertificates(): Certificate[] {
@@ -48,6 +59,7 @@ export function getCertificates(): Certificate[] {
           type,
           filename: file.name,
           status: issuer.includes("confirmed") ? "Issuer and exact date need confirmation" : "Exact date needs confirmation",
+          category: certificateCategory(title),
         };
       });
   }).sort((a, b) => b.date.localeCompare(a.date) || a.title.localeCompare(b.title));

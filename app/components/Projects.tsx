@@ -1,4 +1,5 @@
 import React from "react";
+import Link from "next/link";
 import { BarChart3, Bot, BrainCircuit, ExternalLink, Github, MapPin, Search } from "lucide-react";
 import { projects } from "@/data/projects";
 
@@ -63,9 +64,9 @@ const Projects: React.FC = () => (
                   ))}
                 </div>
                 <div className="flex flex-wrap gap-3">
-                  <a href={`#${project.slug}`} className="inline-flex items-center gap-2 rounded-lg bg-primary px-4 py-2 font-semibold text-white">
+                  <Link href={`/projects/${project.slug}`} className="inline-flex items-center gap-2 rounded-lg bg-primary px-4 py-2 font-semibold text-white">
                     <Bot size={16} /> View Details
-                  </a>
+                  </Link>
                   {project.liveUrl && (
                     <a href={project.liveUrl} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 rounded-lg border border-primary px-4 py-2 font-semibold text-primary">
                       <ExternalLink size={16} /> Live Demo
