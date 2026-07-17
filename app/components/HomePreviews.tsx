@@ -47,7 +47,7 @@ const HomePreviews: React.FC = () => (
         <div className="grid gap-6 text-left md:grid-cols-2">
           {[
             ["Agentic AI & Data Science Consultant", "Danish Agentic Solutions", "DEC 2018 – SEP 2024"],
-            ["E-Commerce Sales Specialist (UK Market)", "Ecommerce – Amazon · Contract", "May 2021 – Dec 2023"],
+            ["E-Commerce Data Analyst (UK Market)", "Amazon Marketplace Operations · Contract", "May 2021 – Dec 2023"],
           ].map(([title, company, date]) => <Link key={title} href="/experience" className="card-tilt rounded-2xl bg-gray-50 p-7 shadow-lg dark:bg-gray-800"><Briefcase className="mb-4 text-primary" /><h3 className="text-xl font-bold text-gray-900 dark:text-white">{title}</h3><p className="mt-2 font-semibold text-primary">{company}</p><p className="mt-2 text-gray-500">{date}</p></Link>)}
         </div>
         <Cta href="/experience">View Full Experience</Cta>

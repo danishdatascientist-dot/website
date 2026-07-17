@@ -1,5 +1,5 @@
 const certificatePath = (folder: string, filename: string) =>
-  `/certificates/all/${encodeURIComponent(folder)}/${encodeURIComponent(filename)}`;
+  `/credentials/all/${encodeURIComponent(folder)}/${encodeURIComponent(filename)}`;
 
 export type EducationCertificate = {
   title: string;
