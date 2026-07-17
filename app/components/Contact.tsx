@@ -1,6 +1,9 @@
 "use client";
 import React, { useState } from 'react';
-import { Send, MapPin, Mail, Phone, MessageCircle } from 'lucide-react';
+import { Send, MapPin, Mail, MessageCircle } from 'lucide-react';
+import { contactDetails } from '@/data/contact';
+import Link from 'next/link';
+import { services } from '@/data/services';
 
 const Contact: React.FC = () => {
   const [formData, setFormData] = useState({
@@ -11,6 +14,7 @@ const Contact: React.FC = () => {
   });
 
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [status, setStatus] = useState('');
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target;
@@ -23,12 +27,16 @@ const Contact: React.FC = () => {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
-    
-    // Simulate form submission
-    await new Promise(resolve => setTimeout(resolve, 1000));
-    
-    alert('Thank you for your message! I will get back to you soon.');
-    setFormData({ name: '', email: '', subject: '', message: '' });
+    setStatus('');
+    const subject = encodeURIComponent(formData.subject);
+    const body = encodeURIComponent(`Name: ${formData.name}\nEmail: ${formData.email}\n\n${formData.message}`);
+    try {
+      window.location.href = `${contactDetails.mailto}?subject=${subject}&body=${body}`;
+      setFormData({ name: '', email: '', subject: '', message: '' });
+      setStatus('Your email application has been opened with the message prepared.');
+    } catch {
+      setStatus(`Unable to open your email application. Please email ${contactDetails.email} directly.`);
+    }
     setIsSubmitting(false);
   };
 
@@ -36,20 +44,20 @@ const Contact: React.FC = () => {
     {
       icon: <Mail className="w-6 h-6" />,
       title: "Email",
-      value: "danish.datascientist@gmail.com",
-      link: "mailto:danish.datascientist@gmail.com"
+      value: contactDetails.email,
+      link: contactDetails.mailto
     },
     {
       icon: <MapPin className="w-6 h-6" />,
       title: "Location",
-      value: "Karachi, Pakistan",
+      value: contactDetails.location,
       link: null
     },
     {
       icon: <MessageCircle className="w-6 h-6" />,
       title: "LinkedIn",
       value: "danishshahzad17",
-      link: "https://linkedin.com/in/danishshahzad17"
+      link: contactDetails.linkedin
     }
   ];
 
@@ -57,12 +65,23 @@ const Contact: React.FC = () => {
     <section id="contact" className="py-20 bg-gray-50 dark:bg-gray-800">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-16 animate-slide-up">
-          <h2 className="text-4xl font-bold text-gray-900 dark:text-white mb-4">
+          <h1 className="text-4xl font-bold text-gray-900 dark:text-white mb-4">
             Get In Touch
-          </h2>
+          </h1>
           <p className="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
-            Ready to collaborate on your next AI project? Let's discuss how we can bring your ideas to life
+            Ready to collaborate on your next AI project? Let&apos;s discuss how we can bring your ideas to life
           </p>
+        </div>
+
+        <h2 className="mb-7 text-center text-3xl font-bold text-gray-900 dark:text-white">What do you need help with?</h2>
+        <div className="mb-14 grid gap-6 md:grid-cols-3">
+          {services.map((service) => (
+            <Link key={service.slug} href={service.href} className="rounded-2xl border border-gray-200 bg-white p-6 shadow-lg transition hover:-translate-y-1 hover:border-primary dark:border-gray-700 dark:bg-gray-900">
+              <h2 className="text-xl font-bold text-gray-900 dark:text-white">{service.title}</h2>
+              <p className="mt-3 text-sm leading-6 text-gray-600 dark:text-gray-300">{service.shortDescription}</p>
+              <span className="mt-4 inline-block font-semibold text-primary">View service</span>
+            </Link>
+          ))}
         </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
@@ -137,6 +156,7 @@ const Contact: React.FC = () => {
               </h3>
               
               <form onSubmit={handleSubmit} className="space-y-6">
+                {status && <div role="status" className="rounded-lg bg-green-50 px-4 py-3 text-sm text-green-700 dark:bg-green-900/30 dark:text-green-300">{status}</div>}
                 <div>
                   <label htmlFor="name" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
                     Name

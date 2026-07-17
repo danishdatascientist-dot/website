@@ -11,9 +11,9 @@ const Blog: React.FC = () => {
     <section id="blog" className="py-20 bg-white dark:bg-gray-900">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-16 animate-slide-up">
-          <h2 className="text-4xl font-bold text-gray-900 dark:text-white mb-4">Latest Blog Posts</h2>
+          <Link href="/blog"><h2 className="text-4xl font-bold text-gray-900 hover:text-primary dark:text-white mb-4">Insights &amp; Learning</h2></Link>
           <p className="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
-            Insights and practical notes on AI development, machine learning, and intelligent systems
+            Practical articles, project notes, and explanations across Python, data science, machine learning, AI applications, and e-commerce analytics.
           </p>
         </div>
 
@@ -43,7 +43,7 @@ const Blog: React.FC = () => {
 
         <div className="text-center mt-12">
           <Link href="/blog" className="inline-flex items-center gap-2 rounded-lg border-2 border-primary px-6 py-3 text-primary font-semibold hover:bg-primary hover:text-white transition-colors">
-            View all posts <ArrowRight size={18} />
+            Visit the Blog <ArrowRight size={18} />
           </Link>
         </div>
       </div>

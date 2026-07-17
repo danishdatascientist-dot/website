@@ -6,3 +6,5 @@ out/
 tmp/
 __pycache__/
 *.pyc
+# Local source archive; deployable copies live in public/certificates/all.
+Certificates/

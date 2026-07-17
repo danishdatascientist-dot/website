@@ -1,6 +1,9 @@
 "use client";
 import React from 'react';
+import Link from 'next/link';
+import Image from 'next/image';
 import { Github, Linkedin, Youtube, Mail, Download } from 'lucide-react';
+import { contactDetails } from '@/data/contact';
 
 const Hero: React.FC = () => {
   return (
@@ -19,34 +22,38 @@ const Hero: React.FC = () => {
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 dark:text-white mb-6">
               <span className="block">Danish Shahzad</span>
               <span className="block text-3xl md:text-4xl lg:text-5xl text-primary mt-2">
-                Agentic AI Developer & Data Scientist
+                Agentic AI Engineer &amp; Data Scientist
               </span>
             </h1>
             
             <p className="text-xl md:text-2xl text-gray-600 dark:text-gray-300 mb-8 max-w-2xl">
-              Building practical AI agents, RAG systems, and data-driven applications for real-world problems
+              I build practical agentic AI, generative AI, data science, machine learning, analytics, and automation solutions that turn complex information and business problems into useful applications, intelligent workflows, dashboards, and predictive systems.
             </p>
+            <p className="mb-8 max-w-2xl text-lg text-gray-600 dark:text-gray-300">My work includes RAG systems, AI chatbots, LangChain, LangGraph, Model Context Protocol, Python, machine learning, data analytics, FastAPI, Streamlit, and e-commerce intelligence.</p>
             
             <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start mb-8">
-              <button 
-                onClick={() => document.querySelector('#contact')?.scrollIntoView({ behavior: 'smooth' })}
+              <Link
+                href="/projects"
                 className="bg-primary hover:bg-primary/90 text-white px-8 py-3 rounded-lg font-semibold transition-all transform hover:scale-105 shadow-lg hover:shadow-xl"
               >
-                Get In Touch
-              </button>
-              <button 
-                onClick={() => document.querySelector('#resume')?.scrollIntoView({ behavior: 'smooth' })}
+                View Projects
+              </Link>
+              <Link
+                href="/services"
                 className="bg-transparent border-2 border-primary text-primary hover:bg-primary hover:text-white px-8 py-3 rounded-lg font-semibold transition-all transform hover:scale-105 flex items-center gap-2 justify-center"
               >
-                <Download size={20} />
-                Download Resume
-              </button>
+                Explore Services
+              </Link>
+            </div>
+            <div className="mb-8 flex flex-wrap justify-center gap-4 lg:justify-start">
+              <Link href="/resume" className="inline-flex items-center gap-2 font-semibold text-primary hover:underline"><Download size={18} aria-hidden="true" /> Download Resume</Link>
+              <Link href="/contact" className="font-semibold text-primary hover:underline">Contact Me</Link>
             </div>
 
             {/* Social Links */}
             <div className="flex justify-center lg:justify-start space-x-6">
               <a
-                href="https://linkedin.com/in/danishshahzad17"
+                href={contactDetails.linkedin}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="p-3 bg-white dark:bg-gray-800 rounded-full shadow-lg hover:shadow-xl hover:scale-110 transition-all text-gray-700 dark:text-gray-300 hover:text-primary dark:hover:text-primary"
@@ -54,7 +61,7 @@ const Hero: React.FC = () => {
                 <Linkedin size={24} />
               </a>
               <a
-                href="https://github.com/Danish7861"
+                href={contactDetails.github}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="p-3 bg-white dark:bg-gray-800 rounded-full shadow-lg hover:shadow-xl hover:scale-110 transition-all text-gray-700 dark:text-gray-300 hover:text-primary dark:hover:text-primary"
@@ -62,7 +69,7 @@ const Hero: React.FC = () => {
                 <Github size={24} />
               </a>
               <a
-                href="https://www.youtube.com/@DanishShahzadAI"
+                href={contactDetails.youtube}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="p-3 bg-white dark:bg-gray-800 rounded-full shadow-lg hover:shadow-xl hover:scale-110 transition-all text-gray-700 dark:text-gray-300 hover:text-primary dark:hover:text-primary"
@@ -70,7 +77,7 @@ const Hero: React.FC = () => {
                 <Youtube size={24} />
               </a>
               <a
-                href="mailto:danish.datascientist@gmail.com"
+                href={contactDetails.mailto}
                 className="p-3 bg-white dark:bg-gray-800 rounded-full shadow-lg hover:shadow-xl hover:scale-110 transition-all text-gray-700 dark:text-gray-300 hover:text-primary dark:hover:text-primary"
               >
                 <Mail size={24} />
@@ -83,9 +90,12 @@ const Hero: React.FC = () => {
             <div className="relative">
               <div className="w-80 h-80 md:w-96 md:h-96 bg-gradient-to-br from-primary/20 to-secondary/20 rounded-full flex items-center justify-center">
                 <div className="w-72 h-72 md:w-88 md:h-88 bg-gradient-to-br from-primary to-secondary rounded-full flex items-center justify-center shadow-2xl">
-                  <img
-                    src="datascientist.jpg"
+                  <Image
+                    src="/datascientist.jpg"
                     alt="Danish Shahzad"
+                    width={320}
+                    height={320}
+                    priority
                     className="w-64 h-64 md:w-80 md:h-80 rounded-full object-cover border-4 border-white dark:border-gray-800 shadow-lg"
                   />
                 </div>

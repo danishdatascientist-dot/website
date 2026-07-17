@@ -2,8 +2,7 @@
 
 import React, { FormEvent, useState } from "react";
 import { ArrowRight, Bot, GraduationCap, Send, ShoppingCart } from "lucide-react";
-
-const EMAIL = "danish.datascientist@gmail.com";
+import { contactDetails } from "@/data/contact";
 
 const Services: React.FC = () => {
   const [form, setForm] = useState({ name: "", email: "", message: "" });
@@ -12,7 +11,7 @@ const Services: React.FC = () => {
     event.preventDefault();
     const subject = encodeURIComponent(`E-Commerce consulting enquiry from ${form.name}`);
     const body = encodeURIComponent(`Name: ${form.name}\nEmail: ${form.email}\n\n${form.message}`);
-    window.location.href = `mailto:${EMAIL}?subject=${subject}&body=${body}`;
+    window.location.href = `${contactDetails.mailto}?subject=${subject}&body=${body}`;
   };
 
   return (
@@ -36,7 +35,7 @@ const Services: React.FC = () => {
             <p className="text-slate-300 leading-relaxed mb-8">
               Hands-on, project-based lessons in Python, automation, and agentic AI for beginners and working professionals.
             </p>
-            <a href={`mailto:${EMAIL}?subject=AI%20Tutoring%20Enquiry`} className="inline-flex items-center gap-2 rounded-lg bg-primary px-5 py-3 font-semibold hover:bg-primary/90 transition-colors">
+            <a href={`${contactDetails.mailto}?subject=AI%20Tutoring%20Enquiry`} className="inline-flex items-center gap-2 rounded-lg bg-primary px-5 py-3 font-semibold hover:bg-primary/90 transition-colors">
               Get in Touch <ArrowRight size={18} />
             </a>
           </article>
@@ -48,7 +47,7 @@ const Services: React.FC = () => {
               A focused 30–60 minute paid session for businesses or individuals deciding where and how AI can improve their work.
             </p>
             <p className="text-sm text-slate-400 mb-5">Calendly booking link coming soon.</p>
-            <a href={`mailto:${EMAIL}?subject=1%3A1%20AI%20Consultation`} className="inline-flex items-center gap-2 rounded-lg border border-purple-300/50 px-5 py-3 font-semibold hover:bg-white/10 transition-colors">
+            <a href={`${contactDetails.mailto}?subject=1%3A1%20AI%20Consultation`} className="inline-flex items-center gap-2 rounded-lg border border-purple-300/50 px-5 py-3 font-semibold hover:bg-white/10 transition-colors">
               Request a Session <ArrowRight size={18} />
             </a>
           </article>

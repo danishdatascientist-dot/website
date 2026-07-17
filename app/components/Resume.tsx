@@ -1,6 +1,7 @@
 "use client";
 import React from 'react';
 import { Download, Eye, Award, Briefcase, Code } from 'lucide-react';
+import { contactDetails } from '@/data/contact';
 
 const Resume: React.FC = () => {
   const highlights = [
@@ -11,38 +12,38 @@ const Resume: React.FC = () => {
     },
     {
       icon: <Code className="w-6 h-6" />,
-      title: "LangChain Expert",
+      title: "AI Application Development",
       description: "Built RAG apps, chatbots, and AI assistants"
     },
     {
       icon: <Briefcase className="w-6 h-6" />,
-      title: "E-commerce AI Strategy",
-      description: "Led automation and optimization initiatives"
+      title: "E-Commerce Analytics",
+      description: "Worked with marketplace reporting, inventory, pricing, and product analysis"
     }
   ];
 
   const handleDownload = () => {
     // In a real application, this would trigger a download of the actual PDF
     const link = document.createElement('a');
-    link.href = 'cv_datascientist.pdf';
+    link.href = contactDetails.resume;
     link.download = 'Danish_Shahzad_CV.pdf';
     link.click();
   };
 
   const handleViewResume = () => {
     // In a real application, this would open the PDF in a new tab
-    window.open('cv_datascientist.pdf', '_blank');
+    window.open(contactDetails.resume, '_blank', 'noopener,noreferrer');
   };
 
   return (
     <section id="resume" className="py-20 bg-white dark:bg-gray-900">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-16 animate-slide-up">
-          <h2 className="text-4xl font-bold text-gray-900 dark:text-white mb-4">
+          <h1 className="text-4xl font-bold text-gray-900 dark:text-white mb-4">
             Resume
-          </h2>
+          </h1>
           <p className="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
-            Download my comprehensive CV to learn more about my professional journey and technical expertise
+            View or download my verified professional resume covering agentic AI, data science, machine learning, analytics, projects, education, and e-commerce expertise.
           </p>
         </div>
 
@@ -88,7 +89,7 @@ const Resume: React.FC = () => {
                 </h3>
                 
                 <p className="text-lg text-gray-600 dark:text-gray-300 mb-8">
-                  AI Developer & Data Science Consultant
+                  Agentic AI Engineer &amp; Data Scientist
                 </p>
                 
                 <div className="space-y-4">
@@ -116,8 +117,8 @@ const Resume: React.FC = () => {
                       <div>Solutions Focus</div>
                     </div>
                     <div>
-                      <div className="font-semibold text-primary">100+</div>
-                      <div>Projects Completed</div>
+                      <div className="font-semibold text-primary">Practical</div>
+                      <div>Project Portfolio</div>
                     </div>
                     <div>
                       <div className="font-semibold text-primary">10+</div>

@@ -1,173 +1,89 @@
-"use client";
-import React from 'react';
-import { ExternalLink, Github, Bot, Brain, TrendingUp, MapPin } from 'lucide-react';
+import React from "react";
+import { BarChart3, Bot, BrainCircuit, ExternalLink, Github, MapPin, Search } from "lucide-react";
+import { projects } from "@/data/projects";
 
-const Projects: React.FC = () => {
-  const projects = [
-    {
-      title: "TripCraft AI",
-      description: "Agentic travel planner using LangGraph & FastAPI that generates complete trip plans based on user preferences including budget, travel mode, and destinations.",
-      icon: <MapPin className="w-6 h-6" />,
-      technologies: ["LangGraph", "FastAPI", "Tavily Search API", "PDF Generation"],
-      features: [
-        "Modular agent workflow with memory",
-        "Real-time trip planning with PDF export",
-        "Responsive UI with animations",
-        "Dynamic plan generation"
-      ],
-      color: "from-blue-500 to-purple-600",
-      liveUrl: "https://youtu.be/xVgsMu_pdRY?si=5dkoUksPiPWkfZgu",   
-      githubUrl: "https://github.com/Danish7861"  
-    },
-    {
-      title: "Multi-PDF Chat",
-      description: "AI-powered document Q&A system enabling natural language interaction with multiple PDFs using LangChain, Google Gemini AI, and FAISS.",
-      icon: <Bot className="w-6 h-6" />,
-      technologies: ["LangChain", "Google Gemini AI", "FAISS", "PyPDF2", "Streamlit"],
-      features: [
-        "Multi-document conversational AI",
-        "Semantic search with embeddings",
-        "Context-aware responses",
-        "Real-time chat interface"
-      ],
-      color: "from-green-500 to-teal-600",
-      liveUrl: "https://youtu.be/Nl3vSJcA0Ls?si=NnXmu9aYET2AndNf",   
-      githubUrl: "https://github.com/Danish7861"  
-    },
-    {
-      title: "AI Customer Support System",
-      description: "Intelligent e-commerce customer support agent with semantic search, dynamic query handling, and brand-aligned responses.",
-      icon: <Brain className="w-6 h-6" />,
-      technologies: ["LangChain", "OpenAI", "Pinecone", "Streamlit", "GitHub Actions"],
-      features: [
-        "Real-time conversational interface",
-        "Semantic search capabilities",
-        "Custom prompt engineering",
-        "CI/CD deployment pipeline"
-      ],
-      color: "from-orange-500 to-red-600",
-      liveUrl: "https://youtu.be/kIVS8m9yrQs?si=M7Iq3c3epQ9UmOBx",   
-      githubUrl: "https://github.com/Danish7861"  
-    },
-    {
-      title: "Twitter Sentiment Analysis",
-      description: "Real-time sentiment analysis on Twitter data with stock price prediction using NLP and time-series forecasting models.",
-      icon: <TrendingUp className="w-6 h-6" />,
-      technologies: ["NLTK", "spaCy", "Twitter API", "Plotly", "Seaborn"],
-      features: [
-        "Real-time sentiment tracking",
-        "Stock price correlation analysis",
-        "Interactive data visualizations",
-        "Predictive modeling"
-      ],
-      color: "from-purple-500 to-pink-600", 
-      liveUrl: "https://youtu.be/PHf6qKrziFM?si=sYMd2w02XBpLQMAD",   
-      githubUrl: "https://github.com/Danish7861"  
-    }
-  ];
+const categoryStyles = {
+  analytics: { gradient: "from-blue-600 to-cyan-500", icon: <BarChart3 className="h-7 w-7" /> },
+  "machine-learning": { gradient: "from-purple-600 to-pink-500", icon: <BrainCircuit className="h-7 w-7" /> },
+  "agentic-ai": { gradient: "from-indigo-600 to-purple-600", icon: <MapPin className="h-7 w-7" /> },
+  rag: { gradient: "from-emerald-600 to-teal-500", icon: <Search className="h-7 w-7" /> },
+};
 
-  return (
-    <section id="projects" className="py-20 bg-gray-50 dark:bg-gray-800">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-16 animate-slide-up">
-          <h2 className="text-4xl font-bold text-gray-900 dark:text-white mb-4">
-            Featured Projects
-          </h2>
-          <p className="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
-            Innovative AI solutions that demonstrate my expertise in machine learning, NLP, and intelligent automation
-          </p>
-        </div>
+const Projects: React.FC = () => (
+  <section className="bg-gray-50 py-20 dark:bg-gray-800">
+    <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+      <div className="mb-16 text-center">
+        <h1 className="text-4xl font-bold text-gray-900 dark:text-white">Projects</h1>
+        <p className="mx-auto mt-4 max-w-3xl text-xl text-gray-600 dark:text-gray-300">
+          Applied analytics, machine learning, RAG, and agentic AI projects focused on practical business and user problems
+        </p>
+      </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-          {projects.map((project, index) => (
-            <div 
-              key={index}
-              className="bg-white dark:bg-gray-900 rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 overflow-hidden group animate-slide-up"
-              style={{ animationDelay: `${index * 0.1}s` }}
+      <div className="grid grid-cols-1 gap-8 lg:grid-cols-2">
+        {projects.map((project, index) => {
+          const style = categoryStyles[project.category];
+          return (
+            <article
+              id={project.slug}
+              key={project.slug}
+              className="card-tilt scroll-mt-24 overflow-hidden rounded-2xl bg-white shadow-lg dark:bg-gray-900"
+              style={{ animationDelay: `${index * 0.06}s` }}
             >
-              {/* Header with gradient */}
-              <div className={`bg-gradient-to-r ${project.color} p-6 text-white`}>
-                <div className="flex items-center space-x-4">
-                  <div className="bg-white/20 p-3 rounded-lg">
-                    {project.icon}
-                  </div>
-                  <div>
-                    <h3 className="text-2xl font-bold">{project.title}</h3>
-                  </div>
+              <div className={`bg-gradient-to-r ${style.gradient} p-6 text-white`}>
+                <div className="flex items-start gap-4">
+                  <div className="rounded-xl bg-white/20 p-3">{style.icon}</div>
+                  <h2 className="text-2xl font-bold">{project.title}</h2>
                 </div>
               </div>
-
-              {/* Content */}
-              <div className="p-6">
-                <p className="text-gray-600 dark:text-gray-300 mb-6 leading-relaxed">
-                  {project.description}
-                </p>
-
-                {/* Features */}
+              <div className="p-7">
                 <div className="mb-6">
-                  <h4 className="text-lg font-semibold text-gray-900 dark:text-white mb-3">
-                    Key Features
-                  </h4>
-                  <ul className="space-y-2">
-                    {project.features.map((feature, i) => (
-                      <li key={i} className="flex items-start">
-                        <div className="w-2 h-2 bg-primary rounded-full mt-2 mr-3 flex-shrink-0"></div>
-                        <span className="text-gray-600 dark:text-gray-300 text-sm">{feature}</span>
+                  <h3 className="mb-2 font-semibold text-gray-900 dark:text-white">Problem</h3>
+                  <p className="leading-relaxed text-gray-600 dark:text-gray-300">{project.problem}</p>
+                </div>
+                <div className="mb-6 rounded-xl bg-primary/5 p-4">
+                  <h3 className="mb-2 font-semibold text-gray-900 dark:text-white">Main result</h3>
+                  <p className="leading-relaxed text-gray-600 dark:text-gray-300">{project.result}</p>
+                </div>
+                <div className="mb-6">
+                  <h3 className="mb-3 font-semibold text-gray-900 dark:text-white">Project work</h3>
+                  <ul className="grid gap-2 sm:grid-cols-2">
+                    {project.features.map((feature) => (
+                      <li key={feature} className="flex items-start gap-3 text-sm text-gray-600 dark:text-gray-300">
+                        <span className="mt-2 h-2 w-2 flex-shrink-0 rounded-full bg-primary" />
+                        {feature}
                       </li>
                     ))}
                   </ul>
                 </div>
-
-                {/* Technologies */}
-                <div className="mb-6">
-                  <h4 className="text-lg font-semibold text-gray-900 dark:text-white mb-3">
-                    Technologies
-                  </h4>
-                  <div className="flex flex-wrap gap-2">
-                    {project.technologies.map((tech, i) => (
-                      <span 
-                        key={i}
-                        className="px-3 py-1 bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300 rounded-full text-sm font-medium"
-                      >
-                        {tech}
-                      </span>
-                    ))}
-                  </div>
+                <div className="mb-6 flex flex-wrap gap-2">
+                  {project.technologies.map((technology) => (
+                    <span key={technology} className="rounded-full bg-gray-100 px-3 py-1 text-sm font-medium text-gray-700 dark:bg-gray-800 dark:text-gray-300">
+                      {technology}
+                    </span>
+                  ))}
                 </div>
-
-                {/* Actions */}
-                <div className="flex space-x-4">
-                {project.liveUrl && (
-                  <a
-                    href={project.liveUrl}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="flex items-center space-x-2 px-4 py-2 bg-primary hover:bg-primary/90 text-white rounded-lg transition-colors"
-                  >
-                    <ExternalLink size={16} />
-                    <span>View Project</span>
+                <div className="flex flex-wrap gap-3">
+                  <a href={`#${project.slug}`} className="inline-flex items-center gap-2 rounded-lg bg-primary px-4 py-2 font-semibold text-white">
+                    <Bot size={16} /> View Details
                   </a>
-                )}
-                {project.githubUrl && (
-                  <a
-                    href={project.githubUrl}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="flex items-center space-x-2 px-4 py-2 bg-gray-100 dark:bg-gray-800 hover:bg-gray-200 dark:hover:bg-gray-700 text-gray-700 dark:text-gray-300 rounded-lg transition-colors"
-                  >
-                    <Github size={16} />
-                    <span>Source Code</span>
-                  </a>
-                )}
+                  {project.liveUrl && (
+                    <a href={project.liveUrl} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 rounded-lg border border-primary px-4 py-2 font-semibold text-primary">
+                      <ExternalLink size={16} /> Live Demo
+                    </a>
+                  )}
+                  {project.githubUrl && (
+                    <a href={project.githubUrl} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 rounded-lg border border-gray-300 px-4 py-2 font-semibold text-gray-700 dark:border-gray-700 dark:text-gray-300">
+                      <Github size={16} /> GitHub
+                    </a>
+                  )}
+                </div>
               </div>
-
-              </div>
-            </div>
-          ))}
-        </div>
+            </article>
+          );
+        })}
       </div>
-    </section>
-  );
-};
+    </div>
+  </section>
+);
 
 export default Projects;

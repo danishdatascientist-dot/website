@@ -1,58 +1,35 @@
+import Image from "next/image";
+import Link from "next/link";
 import React from "react";
-import { Award, Calendar, Image as ImageIcon } from "lucide-react";
+import { ArrowRight, Award, Calendar, FileText } from "lucide-react";
+import { getCertificates } from "@/lib/certificates";
 
-const certificates = [
-  { title: "Agentic AI Certificate", issuer: "Issuing organization", date: "Date to be added" },
-  { title: "Machine Learning Certificate", issuer: "Issuing organization", date: "Date to be added" },
-  { title: "Data Science Certificate", issuer: "Issuing organization", date: "Date to be added" },
-  { title: "Python Certificate", issuer: "Issuing organization", date: "Date to be added" },
-  { title: "Cloud & Deployment Certificate", issuer: "Issuing organization", date: "Date to be added" },
-  { title: "E-Commerce Certificate", issuer: "Issuing organization", date: "Date to be added" },
-];
-
-const Certificates: React.FC = () => (
-  <section id="certificates" className="py-20 bg-gray-50 dark:bg-gray-800">
-    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div className="text-center mb-16 animate-slide-up">
-        <h2 className="text-4xl font-bold text-gray-900 dark:text-white mb-4">Certificates</h2>
-        <p className="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
-          Professional learning across AI, data science, software development, and e-commerce
-        </p>
-      </div>
-
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
-        {certificates.map((certificate, index) => (
-          <article
-            key={certificate.title}
-            className="group rounded-2xl overflow-hidden bg-white dark:bg-gray-900 shadow-lg hover:shadow-2xl transition-all duration-300 animate-slide-up card-tilt"
-            style={{ animationDelay: `${index * 0.08}s` }}
-          >
-            <div className="aspect-[4/3] bg-gradient-to-br from-primary/20 via-purple-500/10 to-secondary/20 flex flex-col items-center justify-center border-b border-gray-200 dark:border-gray-700">
-              <ImageIcon className="w-12 h-12 text-primary mb-3" />
-              <span className="text-sm font-medium text-gray-500 dark:text-gray-400">
-                Certificate image placeholder
-              </span>
-            </div>
-            <div className="p-6">
-              <div className="flex items-start gap-3 mb-3">
-                <Award className="w-5 h-5 text-primary flex-shrink-0 mt-1" />
-                <div>
-                  <h3 className="text-lg font-bold text-gray-900 dark:text-white">
-                    {certificate.title}
-                  </h3>
-                  <p className="text-gray-600 dark:text-gray-300">{certificate.issuer}</p>
-                </div>
+const Certificates = ({ preview = false }: { preview?: boolean }) => {
+  const allCertificates = getCertificates();
+  const certificates = preview ? allCertificates.slice(0, 4) : allCertificates;
+  return (
+    <section className="bg-gray-50 py-20 dark:bg-gray-800">
+      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        <div className="mb-12 text-center">
+          {preview ? <Link href="/certificates"><h2 className="text-4xl font-bold text-gray-900 hover:text-primary dark:text-white">Professional Certificates</h2></Link> : <h1 className="text-4xl font-bold text-gray-900 dark:text-white">Certificates Gallery</h1>}
+          <p className="mx-auto mt-4 max-w-3xl text-lg text-gray-600 dark:text-gray-300">{preview ? "A selection of professional learning in AI, data science, programming, and e-commerce." : `${certificates.length} certificate files from continued professional learning.`}</p>
+        </div>
+        <div className="grid grid-cols-1 gap-7 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+          {certificates.map((certificate) => (
+            <a key={certificate.file} href={certificate.file} target="_blank" rel="noopener noreferrer" className="group card-tilt overflow-hidden rounded-2xl bg-white shadow-lg hover:shadow-2xl dark:bg-gray-900">
+              <div className="relative aspect-[4/3] border-b border-gray-200 bg-white dark:border-gray-700">
+                {certificate.image ? <Image src={certificate.image} alt={`${certificate.title} certificate`} fill className="object-contain p-2 transition-transform group-hover:scale-[1.03]" /> : <div className="flex h-full flex-col items-center justify-center bg-gradient-to-br from-red-50 to-purple-50"><FileText className="mb-3 h-14 w-14 text-red-500" /><span className="font-bold text-red-600">PDF Certificate</span></div>}
               </div>
-              <div className="flex items-center text-sm text-gray-500 dark:text-gray-400">
-                <Calendar className="w-4 h-4 mr-2" />
-                {certificate.date}
+              <div className="p-5">
+                <div className="flex gap-3"><Award className="mt-1 h-5 w-5 flex-shrink-0 text-primary" /><div><h3 className="font-bold text-gray-900 dark:text-white">{certificate.title}</h3><p className="mt-1 text-sm font-medium text-primary">{certificate.issuer}</p></div></div>
+                <p className="mt-3 flex items-center text-sm text-gray-500"><Calendar className="mr-2 h-4 w-4" />{certificate.date}</p>
               </div>
-            </div>
-          </article>
-        ))}
+            </a>
+          ))}
+        </div>
+        {preview && <div className="text-center"><Link href="/certificates" className="mt-10 inline-flex items-center gap-2 rounded-lg bg-primary px-6 py-3 font-semibold text-white">View All Certificates <ArrowRight size={18} /></Link></div>}
       </div>
-    </div>
-  </section>
-);
-
+    </section>
+  );
+};
 export default Certificates;

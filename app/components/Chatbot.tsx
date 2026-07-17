@@ -1,6 +1,8 @@
 "use client";
 import React, { useState, useRef, useEffect } from 'react';
+import Image from 'next/image';
 import { MessageCircle, X, Send, Bot, User } from 'lucide-react';
+import { contactDetails } from '@/data/contact';
 
 interface Message {
   id: number;
@@ -91,7 +93,7 @@ const Chatbot: React.FC = () => {
       // Fallback response when backend is not available
       const fallbackMessage: Message = {
         id: Date.now() + 1,
-        text: "Thanks for your interest! I'm currently having trouble connecting to my knowledge base. For the most accurate information about Danish's projects and expertise, please use the contact form or reach out directly via email at danish.datascientist@gmail.com.",
+        text: `Thanks for your interest! I'm currently having trouble connecting to my knowledge base. For the most accurate information about Danish's projects and expertise, please use the contact form or reach out directly via email at ${contactDetails.email}.`,
         sender: 'bot',
         timestamp: new Date()
       };
@@ -117,7 +119,7 @@ const Chatbot: React.FC = () => {
     <div className="fixed bottom-4 right-4 z-50">
       {/* Chat Window */}
       {isOpen && (
-        <div className="bg-white dark:bg-gray-900 rounded-2xl shadow-2xl border border-gray-200 dark:border-gray-700 w-80 sm:w-96 h-[32rem] mb-4 flex flex-col animate-slide-up overflow-hidden">
+        <div id="portfolio-chat-panel" className="bg-white dark:bg-gray-900 rounded-2xl shadow-2xl border border-gray-200 dark:border-gray-700 w-80 sm:w-96 h-[32rem] mb-4 flex flex-col animate-slide-up overflow-hidden">
           {/* Header */}
           <div className="bg-gradient-to-r from-primary to-secondary text-white p-4 rounded-t-2xl flex-shrink-0">
             <div className="flex items-center justify-between">
@@ -126,7 +128,7 @@ const Chatbot: React.FC = () => {
                   <Bot size={20} className="text-white" />
                 </div>
                 <div className="min-w-0">
-                  <h3 className="font-semibold text-white truncate">Talk to Danish's AI Assistant</h3>
+                  <h3 className="font-semibold text-white truncate">Talk to Danish&apos;s AI Assistant</h3>
                   <p className="text-xs text-white/80 truncate">Ask about projects, AI tools, LangChain workflows, or resume details</p>
                 </div>
               </div>
@@ -156,9 +158,11 @@ const Chatbot: React.FC = () => {
                   {message.sender === 'user' ? (
                     <User size={16} />
                   ) : (
-                    <img
-                        src="datascientist.png"
-                        alt="Danish Bot"
+                    <Image
+                        src="/datascientist.png"
+                        alt="Danish Shahzad AI assistant"
+                        width={20}
+                        height={20}
                         className="w-5 h-5 rounded-full object-cover"
                       />
 
@@ -198,7 +202,7 @@ const Chatbot: React.FC = () => {
                       <div className="w-2 h-2 bg-primary rounded-full animate-bounce" style={{ animationDelay: '0.1s' }}></div>
                       <div className="w-2 h-2 bg-primary rounded-full animate-bounce" style={{ animationDelay: '0.2s' }}></div>
                     </div>
-                    <span className="text-xs text-gray-500 dark:text-gray-400 ml-2">Danish's AI is typing...</span>
+                    <span className="text-xs text-gray-500 dark:text-gray-400 ml-2">Danish&apos;s AI is typing...</span>
                   </div>
                 </div>
               </div>
@@ -256,6 +260,8 @@ const Chatbot: React.FC = () => {
         onClick={() => setIsOpen(!isOpen)}
         className="bg-gradient-to-r from-primary to-secondary text-white w-14 h-14 rounded-full shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-110 active:scale-95 flex items-center justify-center relative overflow-hidden group"
         aria-label={isOpen ? "Close chat" : "Open chat"}
+        aria-expanded={isOpen}
+        aria-controls="portfolio-chat-panel"
       >
         <div className="absolute inset-0 bg-white/10 rounded-full transform scale-0 group-hover:scale-100 transition-transform duration-300"></div>
         <div className="relative z-10">
