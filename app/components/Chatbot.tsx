@@ -9,19 +9,33 @@ type Message = {
 };
 
 function InlineText({ text }: { text: string }) {
-  const parts = text.split(/(\*\*[^*]+\*\*)/g);
+  const parts = text.split(/(\*\*[^*]+\*\*|[\w.+-]+@[\w.-]+\.[A-Za-z]{2,})/g);
 
   return (
     <>
-      {parts.map((part, index) =>
-        part.startsWith("**") && part.endsWith("**") ? (
+      {parts.map((part, index) => {
+        if (part.startsWith("**") && part.endsWith("**")) {
+          return (
           <strong key={index} className="font-semibold">
             {part.slice(2, -2)}
           </strong>
-        ) : (
-          <span key={index}>{part}</span>
-        ),
-      )}
+          );
+        }
+
+        if (/^[\w.+-]+@[\w.-]+\.[A-Za-z]{2,}$/.test(part)) {
+          return (
+            <a
+              key={index}
+              href={`mailto:${part}`}
+              className="font-medium text-primary underline underline-offset-2 hover:opacity-80"
+            >
+              {part}
+            </a>
+          );
+        }
+
+        return <span key={index}>{part}</span>;
+      })}
     </>
   );
 }
@@ -64,7 +78,12 @@ function FormattedMessage({ text }: { text: string }) {
 
 const welcome: Message = {
   role: "model",
-  text: "Hi! I’m Danish’s portfolio assistant. Ask me about his experience, skills, projects, education, or services.",
+  text: `👋 Hi! I'm Danish Shahzad's AI Portfolio Assistant.
+
+Ask me anything about Danish's experience, AI projects, skills, education, tutoring, or services.
+
+📧 You can also contact Danish directly at:
+danish.datascientist@gmail.com`,
 };
 
 export default function Chatbot() {
@@ -89,13 +108,17 @@ export default function Chatbot() {
     setLoading(true);
 
     try {
+      const controller = new AbortController();
+      const timeout = window.setTimeout(() => controller.abort(), 40_000);
       const response = await fetch("/api/chat", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
+        signal: controller.signal,
         body: JSON.stringify({
-          messages: nextMessages.filter((message) => message !== welcome),
+          messages: nextMessages.slice(1),
         }),
       });
+      window.clearTimeout(timeout);
 
       if (!response.ok || !response.body) {
         const data = await response.json().catch(() => null);
@@ -117,17 +140,31 @@ export default function Chatbot() {
           return updated;
         });
       }
+
+      setMessages((current) => {
+        const last = current[current.length - 1];
+        if (last?.role === "model" && !last.text.trim()) {
+          return [
+            ...current.slice(0, -1),
+            { role: "model", text: "I couldn't generate a response. Please try again." },
+          ];
+        }
+        return current;
+      });
     } catch (error) {
-      setMessages((current) => [
-        ...current,
-        {
-          role: "model",
-          text:
-            error instanceof Error
-              ? error.message
-              : "I couldn’t connect right now. Please try again shortly.",
-        },
-      ]);
+      const errorText =
+        error instanceof DOMException && error.name === "AbortError"
+          ? "The response took too long. Please try again."
+          : error instanceof Error
+            ? error.message
+            : "I couldn't connect right now. Please try again shortly.";
+      setMessages((current) => {
+        const last = current[current.length - 1];
+        if (last?.role === "model" && !last.text.trim()) {
+          return [...current.slice(0, -1), { role: "model", text: errorText }];
+        }
+        return [...current, { role: "model", text: errorText }];
+      });
     } finally {
       setLoading(false);
     }
@@ -154,7 +191,7 @@ export default function Chatbot() {
           </header>
 
           <div className="flex-1 space-y-3 overflow-y-auto bg-gray-50 p-4 dark:bg-gray-950">
-            {messages.map((message, index) => (
+            {messages.map((message, index) => message.text ? (
               <div
                 key={`${message.role}-${index}`}
                 className={`max-w-[88%] rounded-2xl px-4 py-3 text-sm leading-6 ${
@@ -165,8 +202,8 @@ export default function Chatbot() {
               >
                 <FormattedMessage text={message.text} />
               </div>
-            ))}
-            {loading && (
+            ) : null)}
+            {loading && messages[messages.length - 1]?.role === "user" && (
               <div className="w-fit rounded-2xl rounded-bl-md border border-gray-200 bg-white px-4 py-3 text-sm text-gray-500 dark:border-gray-700 dark:bg-gray-800">
                 Thinking…
               </div>

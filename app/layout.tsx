@@ -11,19 +11,32 @@ import {
 } from "./components/navigation/RouteNavigation";
 
 const inter = Inter({ subsets: ["latin"] });
+const siteUrl = "https://danishshahzadai.com";
 
 export const metadata = {
+  metadataBase: new URL(siteUrl),
   title: "Danish Shahzad | Agentic AI Engineer & Data Scientist",
   description:
     "Danish Shahzad — Agentic AI Engineer & Data Scientist building practical agentic AI, RAG, machine learning, analytics, and automation solutions.",
   other: {
     "contact:email": contactDetails.email,
   },
+  alternates: {
+    canonical: "/",
+  },
   openGraph: {
     title: "Danish Shahzad | Agentic AI Engineer & Data Scientist",
     description:
       "Agentic AI, generative AI, data science, machine learning, analytics, automation, RAG systems, and intelligent application portfolio.",
+    url: siteUrl,
+    siteName: "Danish Shahzad",
     type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Danish Shahzad | Agentic AI Engineer & Data Scientist",
+    description:
+      "Agentic AI, generative AI, data science, machine learning, analytics, automation, and intelligent application portfolio.",
   },
 };
 
@@ -32,7 +45,7 @@ const personStructuredData = {
   "@type": "Person",
   name: contactDetails.name,
   jobTitle: "Agentic AI Engineer & Data Scientist",
-  url: "https://danishshahzadai.com",
+  url: siteUrl,
   email: contactDetails.email,
   homeLocation: {
     "@type": "Place",

@@ -2,6 +2,8 @@ import { NextResponse } from "next/server";
 import { portfolioContext } from "@/lib/portfolioContext";
 
 export const runtime = "nodejs";
+export const maxDuration = 30;
+export const dynamic = "force-dynamic";
 
 type ChatMessage = {
   role: "user" | "model";
@@ -11,6 +13,18 @@ type ChatMessage = {
 const MAX_MESSAGES = 6;
 const MAX_MESSAGE_LENGTH = 1500;
 const MODELS = ["gemini-3.1-flash-lite", "gemini-3.5-flash"];
+const CONNECTION_TIMEOUT_MS = 12_000;
+
+type GeminiError = {
+  error?: { message?: string };
+};
+
+export async function GET() {
+  return NextResponse.json({
+    status: "ok",
+    configured: Boolean(process.env.GEMINI_API_KEY),
+  });
+}
 
 export async function POST(request: Request) {
   const apiKey = process.env.GEMINI_API_KEY;
@@ -53,24 +67,36 @@ export async function POST(request: Request) {
     });
 
     let response: Response | undefined;
-    let errorData: any;
+    let errorData: GeminiError | null = null;
 
     for (let index = 0; index < MODELS.length; index += 1) {
       const model = MODELS[index];
-      response = await fetch(
-        `https://generativelanguage.googleapis.com/v1beta/models/${model}:streamGenerateContent?alt=sse`,
-        {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          "x-goog-api-key": apiKey,
-        },
-          body: requestBody,
-        },
-      );
+      const controller = new AbortController();
+      const timeout = setTimeout(() => controller.abort(), CONNECTION_TIMEOUT_MS);
+      try {
+        response = await fetch(
+          `https://generativelanguage.googleapis.com/v1beta/models/${model}:streamGenerateContent?alt=sse`,
+          {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+              "x-goog-api-key": apiKey,
+            },
+            body: requestBody,
+            signal: controller.signal,
+            cache: "no-store",
+          },
+        );
+      } catch (fetchError) {
+        console.error(`Gemini ${model} connection error:`, fetchError);
+        response = undefined;
+        continue;
+      } finally {
+        clearTimeout(timeout);
+      }
       if (response.ok) break;
 
-      errorData = await response.json().catch(() => null);
+      errorData = (await response.json().catch(() => null)) as GeminiError | null;
       const isTemporary = response.status === 429 || response.status === 503;
       if (!isTemporary || index === MODELS.length - 1) break;
     }
@@ -87,6 +113,22 @@ export async function POST(request: Request) {
     const encoder = new TextEncoder();
     let buffer = "";
 
+    const extractText = (event: string) => {
+      const json = event
+        .split("\n")
+        .filter((line) => line.startsWith("data:"))
+        .map((line) => line.slice(5).trim())
+        .join("");
+      if (!json || json === "[DONE]") return "";
+
+      const chunk = JSON.parse(json);
+      return (
+        chunk?.candidates?.[0]?.content?.parts
+          ?.map((part: { text?: string }) => part.text ?? "")
+          .join("") ?? ""
+      );
+    };
+
     const stream = new ReadableStream({
       async start(controller) {
         const reader = response!.body!.getReader();
@@ -100,19 +142,14 @@ export async function POST(request: Request) {
             buffer = events.pop() ?? "";
 
             for (const event of events) {
-              const json = event
-                .split("\n")
-                .filter((line) => line.startsWith("data:"))
-                .map((line) => line.slice(5).trim())
-                .join("");
-              if (!json) continue;
-
-              const chunk = JSON.parse(json);
-              const text = chunk?.candidates?.[0]?.content?.parts
-                ?.map((part: { text?: string }) => part.text ?? "")
-                .join("");
+              const text = extractText(event);
               if (text) controller.enqueue(encoder.encode(text));
             }
+          }
+          buffer += decoder.decode().replace(/\r\n/g, "\n");
+          if (buffer.trim()) {
+            const text = extractText(buffer);
+            if (text) controller.enqueue(encoder.encode(text));
           }
         } catch (streamError) {
           console.error("Gemini stream error:", streamError);
@@ -128,6 +165,7 @@ export async function POST(request: Request) {
       headers: {
         "Content-Type": "text/plain; charset=utf-8",
         "Cache-Control": "no-cache, no-transform",
+        "X-Content-Type-Options": "nosniff",
       },
     });
   } catch (error) {
