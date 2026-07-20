@@ -10,11 +10,13 @@ const Contact: React.FC = () => {
     name: '',
     email: '',
     subject: '',
-    message: ''
+    message: '',
+    company: '',
   });
 
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [status, setStatus] = useState('');
+  const [statusType, setStatusType] = useState<'success' | 'error' | ''>('');
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target;
@@ -28,16 +30,25 @@ const Contact: React.FC = () => {
     e.preventDefault();
     setIsSubmitting(true);
     setStatus('');
-    const subject = encodeURIComponent(formData.subject);
-    const body = encodeURIComponent(`Name: ${formData.name}\nEmail: ${formData.email}\n\n${formData.message}`);
+    setStatusType('');
     try {
-      window.location.href = `${contactDetails.mailto}?subject=${subject}&body=${body}`;
-      setFormData({ name: '', email: '', subject: '', message: '' });
-      setStatus('Your email application has been opened with the message prepared.');
-    } catch {
-      setStatus(`Unable to open your email application. Please email ${contactDetails.email} directly.`);
+      const response = await fetch('/api/contact', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(formData),
+      });
+      const result = await response.json();
+      if (!response.ok) throw new Error(result.error || 'Unable to send your message.');
+
+      setFormData({ name: '', email: '', subject: '', message: '', company: '' });
+      setStatusType('success');
+      setStatus('Thank you! Your message has been sent successfully.');
+    } catch (error) {
+      setStatusType('error');
+      setStatus(error instanceof Error ? error.message : `Unable to send your message. Please email ${contactDetails.email} directly.`);
+    } finally {
+      setIsSubmitting(false);
     }
-    setIsSubmitting(false);
   };
 
   const contactInfo = [
@@ -156,7 +167,11 @@ const Contact: React.FC = () => {
               </h3>
               
               <form onSubmit={handleSubmit} className="space-y-6">
-                {status && <div role="status" className="rounded-lg bg-green-50 px-4 py-3 text-sm text-green-700 dark:bg-green-900/30 dark:text-green-300">{status}</div>}
+                {status && <div role="status" className={`rounded-lg px-4 py-3 text-sm ${statusType === 'success' ? 'bg-green-50 text-green-700 dark:bg-green-900/30 dark:text-green-300' : 'bg-red-50 text-red-700 dark:bg-red-900/30 dark:text-red-300'}`}>{status}</div>}
+                <div className="hidden" aria-hidden="true">
+                  <label htmlFor="company">Company</label>
+                  <input id="company" name="company" type="text" tabIndex={-1} autoComplete="off" value={formData.company} onChange={handleInputChange} />
+                </div>
                 <div>
                   <label htmlFor="name" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
                     Name
@@ -168,6 +183,7 @@ const Contact: React.FC = () => {
                     value={formData.name}
                     onChange={handleInputChange}
                     required
+                    maxLength={100}
                     className="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-primary focus:border-primary bg-white dark:bg-gray-800 text-gray-900 dark:text-white transition-colors"
                     placeholder="Your Name"
                   />
@@ -184,6 +200,7 @@ const Contact: React.FC = () => {
                     value={formData.email}
                     onChange={handleInputChange}
                     required
+                    maxLength={254}
                     className="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-primary focus:border-primary bg-white dark:bg-gray-800 text-gray-900 dark:text-white transition-colors"
                     placeholder="your@email.com"
                   />
@@ -200,6 +217,7 @@ const Contact: React.FC = () => {
                     value={formData.subject}
                     onChange={handleInputChange}
                     required
+                    maxLength={150}
                     className="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-primary focus:border-primary bg-white dark:bg-gray-800 text-gray-900 dark:text-white transition-colors"
                     placeholder="Project Discussion"
                   />
@@ -215,6 +233,7 @@ const Contact: React.FC = () => {
                     value={formData.message}
                     onChange={handleInputChange}
                     required
+                    maxLength={5000}
                     rows={5}
                     className="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-primary focus:border-primary bg-white dark:bg-gray-800 text-gray-900 dark:text-white transition-colors resize-none"
                     placeholder="Tell me about your project..."
