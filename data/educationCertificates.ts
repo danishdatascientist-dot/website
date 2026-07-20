@@ -40,8 +40,8 @@ export const educationCertificates: EducationCertificate[] = [
     issuer: "Stanford University / Coursera",
     date: "2020",
     category: "Machine Learning",
-    file: certificatePath("2020 Certificates", "Machine Learning.pdf"),
-    type: "pdf",
+    file: certificatePath("2020 Certificates", "Machine Learning.png"),
+    type: "image",
   },
   {
     title: "Neural Networks and Deep Learning",

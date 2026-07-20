@@ -1,25 +1,69 @@
 
-> nextjs-fastapi@0.2.0 next-dev
+> nextjs-fastapi@0.2.0 dev
 > next dev
 
   ▲ Next.js 14.2.35
   - Local:        http://localhost:3000
+  - Environments: .env.local
 
  ✓ Starting...
- ✓ Ready in 1219ms
+ ✓ Ready in 1531ms
  ○ Compiling / ...
- ✓ Compiled / in 2.2s (689 modules)
- GET / 200 in 2375ms
- ✓ Compiled in 125ms (305 modules)
- GET / 200 in 41ms
- ○ Compiling /experience ...
- ✓ Compiled /experience in 1347ms (674 modules)
- GET /experience 200 in 1435ms
- ✓ Compiled /education in 88ms (684 modules)
- GET /education 200 in 152ms
- ✓ Compiled /certificates in 81ms (689 modules)
- GET /certificates 200 in 154ms
- ✓ Compiled /projects/[slug] in 102ms (701 modules)
- GET /projects/hardware-store-global-inventory 200 in 369ms
- ✓ Compiled /services/ai-tutoring in 269ms (716 modules)
- GET /services/ai-tutoring 200 in 386ms
+ ✓ Compiled / in 2.7s (700 modules)
+ GET / 200 in 2873ms
+ ✓ Compiled in 122ms (310 modules)
+ ✓ Compiled /projects in 85ms (689 modules)
+ GET /projects 200 in 205ms
+ ✓ Compiled /experience in 76ms (695 modules)
+ GET /experience 200 in 148ms
+ ✓ Compiled /education in 82ms (703 modules)
+ GET /education 200 in 141ms
+ ✓ Compiled /certificates in 79ms (705 modules)
+ GET /certificates 200 in 151ms
+ ✓ Compiled /contact in 105ms (718 modules)
+ GET /contact 200 in 161ms
+ ✓ Compiled in 17ms
+ ✓ Compiled /certificates in 151ms (347 modules)
+ GET /certificates 200 in 243ms
+ ✓ Compiled /education in 36ms (358 modules)
+ GET /education 200 in 118ms
+ GET /certificates 200 in 62ms
+ ✓ Compiled /favicon.ico in 190ms (379 modules)
+ GET /favicon.ico 200 in 233ms
+ GET /favicon.ico 200 in 4ms
+ GET /certificates 200 in 99ms
+ GET /favicon.ico 200 in 6ms
+ ✓ Compiled /education in 38ms (390 modules)
+ ✓ Compiled /resume in 283ms (726 modules)
+ ✓ Compiled /blog in 93ms (716 modules)
+ ✓ Compiled / in 65ms (437 modules)
+ ✓ Compiled /blog/[slug] in 161ms (708 modules)
+ GET /blog/building-intelligent-rag-systems-with-langchain 200 in 72ms
+ ✓ Compiled /favicon.ico in 67ms (429 modules)
+ GET /favicon.ico 200 in 101ms
+ GET /blog/building-intelligent-rag-systems-with-langchain 200 in 60ms
+ GET /favicon.ico 200 in 4ms
+ GET /blog/building-intelligent-rag-systems-with-langchain 200 in 52ms
+ GET /favicon.ico 200 in 3ms
+ GET /blog/building-intelligent-rag-systems-with-langchain 200 in 73ms
+ GET /favicon.ico 200 in 4ms
+ GET /blog/building-intelligent-rag-systems-with-langchain 200 in 59ms
+ GET /favicon.ico 200 in 5ms
+ GET /blog/building-intelligent-rag-systems-with-langchain 200 in 63ms
+ GET /favicon.ico 200 in 4ms
+ GET /blog/building-intelligent-rag-systems-with-langchain 200 in 59ms
+ GET /favicon.ico 200 in 3ms
+ GET /blog/agentic-ai-2026 200 in 59ms
+ GET /favicon.ico 200 in 6ms
+ GET /blog/agentic-ai-2026 200 in 53ms
+ GET /favicon.ico 200 in 4ms
+ GET /blog/agentic-ai-2026 200 in 45ms
+ GET /favicon.ico 200 in 5ms
+ GET /blog/building-intelligent-rag-systems-with-langchain 200 in 48ms
+ GET /favicon.ico 200 in 4ms
+ GET /blog/building-intelligent-rag-systems-with-langchain 200 in 78ms
+ GET /favicon.ico 200 in 4ms
+ GET /blog/building-intelligent-rag-systems-with-langchain 200 in 72ms
+ GET /favicon.ico 200 in 3ms
+ GET /blog 200 in 58ms
+ GET /favicon.ico 200 in 4ms

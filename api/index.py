@@ -50,7 +50,7 @@ app = FastAPI(
 # Allow CORS from frontend (you can restrict this to your domain)
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["https://www.danishagentic.com"],
+    allow_origins=["https://www.danishshahzadai.com"],
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],

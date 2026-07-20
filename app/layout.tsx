@@ -3,6 +3,7 @@ import { Inter } from "next/font/google";
 import { ThemeProvider } from "./contexts/ThemeContext";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
+import Chatbot from "./components/Chatbot";
 import { contactDetails } from "@/data/contact";
 import {
   RouteBackNavigation,
@@ -68,6 +69,7 @@ export default function RootLayout({
             <RoutePageNavigation />
           </div>
           <Footer />
+          <Chatbot />
         </ThemeProvider>
       </body>
     </html>

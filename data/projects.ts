@@ -26,6 +26,7 @@ export const projects: Project[] = [
     ],
     technologies: ["Python", "Pandas", "Matplotlib", "Seaborn"],
     category: "analytics",
+    liveUrl: "https://github.com/Danish7861/hardware-store-analysis",
   },
   {
     slug: "amazon-sales-inventory-analytics",
@@ -59,6 +60,7 @@ export const projects: Project[] = [
     ],
     technologies: ["Python", "Pandas", "NumPy", "scikit-learn", "FastAPI", "Jinja2", "HTML/CSS"],
     category: "machine-learning",
+    liveUrl: "https://www.youtube.com/watch?v=lwFT439jRRM",
   },
   {
     slug: "tripcraft-ai",
@@ -110,6 +112,7 @@ export const projects: Project[] = [
     ],
     technologies: ["Python", "LangChain", "FAISS", "Excel", "Text Data", "RAG"],
     category: "rag",
+    liveUrl: "https://youtu.be/m2lY28iulSQ?si=byeFSZE75CbTuUIj",
   },
   {
     slug: "multi-pdf-chatbot",
@@ -119,7 +122,7 @@ export const projects: Project[] = [
     features: ["Multiple PDF upload", "Semantic chunking", "FAISS retrieval", "Document-grounded answers", "Chat history"],
     technologies: ["Python", "LangChain", "Google Gemini", "FAISS", "PyPDF2", "Streamlit"],
     category: "rag",
-    liveUrl: "https://youtu.be/Nl3vSJcA0Ls?si=NnXmu9aYET2AndNf",
+    liveUrl: "https://youtu.be/Nl3vSJcA0Ls?si=un2q0LAfgVU-q-HI",
   },
   {
     slug: "ai-ecommerce-chatbot",
@@ -129,5 +132,6 @@ export const projects: Project[] = [
     features: ["Product knowledge search", "AstraDB vector retrieval", "LangChain runnable chains", "FastAPI backend", "Bootstrap and Jinja2 interface"],
     technologies: ["Python", "LangChain", "Google Gemini", "AstraDB", "FastAPI", "Bootstrap", "Jinja2"],
     category: "rag",
+    liveUrl: "https://www.youtube.com/watch?v=kIVS8m9yrQs",
   },
 ];
