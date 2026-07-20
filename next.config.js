@@ -3,6 +3,11 @@ const nextConfig = {
   eslint: {
     ignoreDuringBuilds: true,
   },
+  redirects: async () => [
+    { source: "/blog_1.png", destination: "/rag-systems-langchain-guide.png", permanent: true },
+    { source: "/blog_2.PNG", destination: "/langgraph-ai-application-framework.png", permanent: true },
+    { source: "/blog_3.png", destination: "/ai-agents-business-automation.png", permanent: true },
+  ],
 };
 
 if (process.env.NODE_ENV === "development") {

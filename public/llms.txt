@@ -1,0 +1,16 @@
+# Danish Shahzad
+
+> Agentic AI Engineer and Data Scientist. Builds RAG systems, AI agents, machine learning models, and e-commerce analytics solutions.
+> Offers 1:1 AI tutoring, AI consultation, and Amazon e-commerce consulting.
+
+## Core pages
+
+- [About](https://www.danishshahzadai.com/about): Background in automotive engineering, AI, data science, and Amazon marketplace operations.
+- [Projects](https://www.danishshahzadai.com/projects): RAG applications, AI agents, predictive models, and inventory analytics.
+- [Services](https://www.danishshahzadai.com/services): AI tutoring, 1:1 consultation, and e-commerce consulting.
+- [Blog](https://www.danishshahzadai.com/blog): Technical writing on RAG, LangGraph, AI agents, and Python.
+- [Contact](https://www.danishshahzadai.com/contact): Enquiries for tutoring, consultation, and project support.
+
+## Expertise
+
+LangChain, LangGraph, Model Context Protocol, FAISS, Pinecone, Python, scikit-learn, TensorFlow, FastAPI, Streamlit, Power BI, Helium 10, and Keepa.

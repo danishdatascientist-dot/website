@@ -2,15 +2,19 @@ import type { Metadata } from "next";
 import ServiceEnquiryForm from "@/app/components/forms/ServiceEnquiryForm";
 import { ecommerceServiceGroups, ecommerceTools } from "@/data/services";
 import { ecommerceAreas, ecommerceDataConnections, marketplaceTools } from "@/data/ecommerceExpertise";
+import JsonLd from "@/app/components/JsonLd";
+import { breadcrumbSchema, serviceSchema } from "@/lib/seo";
 
 export const metadata: Metadata = {
-  title: "Amazon & E-Commerce Consulting | Danish Shahzad",
+  title: "Amazon E-Commerce Consulting — Pricing & Inventory Analytics",
   description: "Amazon and e-commerce support covering product research, competitor analysis, pricing, listings, inventory analytics, private label, and FBA wholesale.",
   openGraph: { title: "Amazon & E-Commerce Consulting | Danish Shahzad", description: "Structured Amazon and e-commerce analysis for clearer marketplace decisions.", type: "website" },
 };
 
 export default function EcommerceConsultingPage() {
   return <main className="bg-white dark:bg-gray-900">
+    <JsonLd data={serviceSchema({ name: "Amazon E-Commerce Consulting", path: "/services/ecommerce-consulting", description: metadata.description as string, audience: "Amazon sellers, private-label learners, wholesale operators, and e-commerce teams" })} />
+    <JsonLd data={breadcrumbSchema([{ name: "Home", path: "" }, { name: "Services", path: "/services" }, { name: "E-Commerce Consulting" }])} />
     <section className="bg-gradient-to-br from-slate-950 via-purple-950 to-blue-950 py-24 text-white">
       <div className="mx-auto max-w-5xl px-4 text-center sm:px-6">
         <p className="font-semibold uppercase tracking-[0.2em] text-purple-300">Domain knowledge with data</p>

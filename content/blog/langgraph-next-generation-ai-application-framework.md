@@ -4,7 +4,7 @@ excerpt: "Most AI agents forget you the moment a conversation ends. Here's how m
 date: "2026-07-21"
 readTime: "6 min read"
 category: "AI Development"
-image: "/blog_2.PNG"
+image: "/langgraph-ai-application-framework.png"
 ---
 
 Most AI agents today suffer from a hidden flaw — and it's costing them user trust every single day.

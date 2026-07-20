@@ -2,9 +2,11 @@ import type { Metadata } from "next";
 import { CheckCircle2 } from "lucide-react";
 import ServiceEnquiryForm from "@/app/components/forms/ServiceEnquiryForm";
 import { aiEraLearningTrack, extendedAiRoadmap, lessonFormats, lessonSteps, tutoringAudience, tutoringCurriculum, tutoringSessionOptions } from "@/data/services";
+import JsonLd from "@/app/components/JsonLd";
+import { breadcrumbSchema, serviceSchema } from "@/lib/seo";
 
 export const metadata: Metadata = {
-  title: "AI, Python & Data Science Tutoring | Danish Shahzad",
+  title: "1:1 AI & Python Tutoring — LangChain, RAG, ML | Danish Shahzad",
   description: "Personalised one-to-one tutoring in Python, data science, machine learning, deep learning, RAG, chatbots, LangChain, LangGraph, MCP, FastAPI, and Streamlit.",
   openGraph: { title: "AI Tutoring | Danish Shahzad", description: "Personalised, practical AI lessons with live explanation and guided coding.", type: "website" },
 };
@@ -12,6 +14,8 @@ export const metadata: Metadata = {
 export default function AiTutoringPage() {
   return (
     <main className="bg-white dark:bg-gray-900">
+      <JsonLd data={serviceSchema({ name: "AI and Data Science Tutoring", path: "/services/ai-tutoring", description: metadata.description as string, audience: "Beginners, university students, working professionals, and developers" })} />
+      <JsonLd data={breadcrumbSchema([{ name: "Home", path: "" }, { name: "Services", path: "/services" }, { name: "AI Tutoring" }])} />
       <section className="bg-gradient-to-br from-slate-950 via-purple-950 to-blue-950 py-24 text-white">
         <div className="mx-auto max-w-5xl px-4 text-center sm:px-6">
           <p className="font-semibold uppercase tracking-[0.2em] text-purple-300">Personalised learning</p>

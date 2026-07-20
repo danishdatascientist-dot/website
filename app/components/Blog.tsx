@@ -21,7 +21,7 @@ const Blog: React.FC = () => {
           {blogPosts.map((post, index) => (
             <article key={post.slug} className="bg-gray-50 dark:bg-gray-800 rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 animate-slide-up card-tilt" style={{ animationDelay: `${index * 0.1}s` }}>
               <div className="relative h-48 overflow-hidden">
-                <Image src={post.image} alt={post.title} fill className="object-cover transition-transform duration-300 hover:scale-110" />
+                <Image src={post.image} alt={post.title} fill sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw" className="object-cover transition-transform duration-300 hover:scale-110" />
                 <span className="absolute top-4 left-4 bg-primary text-white px-3 py-1 rounded-full text-sm font-medium">{post.category}</span>
               </div>
               <div className="p-6">

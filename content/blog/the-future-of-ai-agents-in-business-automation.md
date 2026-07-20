@@ -4,7 +4,7 @@ excerpt: "AI didn't remove the need for engineers — it moved where they're nee
 date: "2026-07-21"
 readTime: "9 min read"
 category: "AI Development"
-image: "/blog_3.png"
+image: "/ai-agents-business-automation.png"
 ---
 
 Every week another post shows up in my feed claiming AI is coming for developers. Someone shares a screenshot of Claude or GPT writing a full app in seconds, and the comments fill up with the same two reactions: panic, or denial.

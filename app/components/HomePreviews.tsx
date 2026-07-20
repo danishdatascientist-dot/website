@@ -30,7 +30,7 @@ const HomePreviews: React.FC = () => (
   <>
     <section className="bg-gray-50 py-20 dark:bg-gray-800">
       <div className="mx-auto grid max-w-7xl items-center gap-10 px-4 sm:px-6 lg:grid-cols-2 lg:px-8">
-        <div className="relative h-80 overflow-hidden rounded-2xl shadow-2xl"><Image src="/about_pic.jpg" alt="Danish Shahzad, Agentic AI Engineer and Data Scientist" fill className="object-cover" /></div>
+        <div className="relative h-80 overflow-hidden rounded-2xl shadow-2xl"><Image src="/about_pic.jpg" alt="Danish Shahzad, Agentic AI Engineer and Data Scientist" fill sizes="(max-width: 1024px) 100vw, 50vw" className="object-cover" /></div>
         <div>
           <Link href="/about"><h2 className="mb-5 text-4xl font-bold text-gray-900 hover:text-primary dark:text-white">About Me</h2></Link>
           <p className="text-lg leading-relaxed text-gray-600 dark:text-gray-300">I am a data science and AI practitioner with a background in automotive engineering, artificial intelligence, Amazon marketplace operations, and practical software development.</p>

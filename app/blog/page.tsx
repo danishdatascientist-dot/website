@@ -5,7 +5,7 @@ import { ArrowRight, Calendar } from "lucide-react";
 import { getAllPosts } from "@/lib/blog";
 
 export const metadata: Metadata = {
-  title: "Blog | Danish Shahzad",
+  title: "AI & Data Science Blog — RAG, LangGraph, Python Tutorials",
   description: "Articles by Danish Shahzad about Agentic AI, data science, RAG systems, machine learning, and technology.",
 };
 

@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
 import Projects from "../components/Projects";
 import YouTube from "../components/YouTube";
-export const metadata: Metadata = { title: "Projects | Danish Shahzad", description: "AI and data science projects by Danish Shahzad, including RAG systems, AI agents, chatbots, analytics, and machine learning applications." };
+export const metadata: Metadata = { title: "AI & Data Science Projects — RAG, Agents, Analytics", description: "Explore Danish Shahzad's practical projects across RAG systems, AI agents, machine learning, chatbots, inventory analysis, and data analytics." };
 export default function ProjectsPage() { return <main><Projects /><YouTube /></main>; }

@@ -92,7 +92,7 @@ const Hero: React.FC = () => {
                 <div className="w-72 h-72 md:w-88 md:h-88 bg-gradient-to-br from-primary to-secondary rounded-full flex items-center justify-center shadow-2xl">
                   <Image
                     src="/datascientist.jpg"
-                    alt="Danish Shahzad"
+                    alt="Danish Shahzad, Agentic AI Engineer and Data Scientist"
                     width={320}
                     height={320}
                     priority

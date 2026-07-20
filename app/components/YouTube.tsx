@@ -19,7 +19,7 @@ const videos = [
   { title: "AI Chatbot for PDFs, ArXiv, YouTube, Text, and CSV Files | Interactive Q&A with Your Data", duration: "4:57", views: "112 views", published: "1 year ago", url: "https://youtu.be/Xv9L5NgJIQg?si=Ip85OIOPpnBOPR2E" },
 ];
 
-const thumbnails = ["/yt_1.png", "/yt_2.png", "/yt_3.PNG", "/blog_1.png", "/blog_2.PNG", "/blog_3.png"];
+const thumbnails = ["/yt_1.png", "/yt_2.png", "/yt_3.PNG", "/rag-systems-langchain-guide.png", "/langgraph-ai-application-framework.png", "/ai-agents-business-automation.png"];
 
 const YouTube: React.FC = () => (
   <section className="bg-gray-50 py-20 dark:bg-gray-800">

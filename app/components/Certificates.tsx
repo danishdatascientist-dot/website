@@ -28,7 +28,7 @@ const Certificates = ({ preview = false }: { preview?: boolean }) => {
           {certificates.map((certificate) => (
             <article key={certificate.file} className="group card-tilt overflow-hidden rounded-2xl bg-white shadow-lg hover:shadow-2xl dark:bg-gray-900">
               <div className="relative aspect-[4/3] border-b border-gray-200 bg-white dark:border-gray-700">
-                {certificate.image ? <Image src={certificate.image} alt={`${certificate.title} certificate`} fill className="object-contain p-2 transition-transform group-hover:scale-[1.03]" /> : <div className="flex h-full flex-col items-center justify-center bg-gradient-to-br from-red-50 to-purple-50"><FileText className="mb-3 h-14 w-14 text-red-500" /><span className="font-bold text-red-600">PDF Certificate</span></div>}
+                {certificate.image ? <Image src={certificate.image} alt={`${certificate.title} certificate`} fill sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw" className="object-contain p-2 transition-transform group-hover:scale-[1.03]" /> : <div className="flex h-full flex-col items-center justify-center bg-gradient-to-br from-red-50 to-purple-50"><FileText className="mb-3 h-14 w-14 text-red-500" /><span className="font-bold text-red-600">PDF Certificate</span></div>}
               </div>
               <div className="p-5">
                 <div className="flex gap-3"><Award className="mt-1 h-5 w-5 flex-shrink-0 text-primary" /><div><h3 className="font-bold text-gray-900 dark:text-white">{certificate.title}</h3><p className="mt-1 text-sm font-medium text-primary">{certificate.issuer}</p></div></div>

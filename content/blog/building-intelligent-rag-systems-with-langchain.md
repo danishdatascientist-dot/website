@@ -4,7 +4,7 @@ excerpt: "Chatbots and content generators were just the warm-up act. Here's what
 date: "2026-07-21"
 readTime: "5 min read"
 category: "AI Development"
-image: "/blog_1.png"
+image: "/rag-systems-langchain-guide.png"
 ---
 
 We've spent the last two years marveling at AI that can write, generate images, and hold conversations. But here's the truth: that was just the warm-up act. In 2026, the real shift is underway — and it's called Agentic AI.

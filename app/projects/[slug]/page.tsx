@@ -3,6 +3,8 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { ArrowLeft, ExternalLink, Github } from "lucide-react";
 import { projects } from "@/data/projects";
+import JsonLd from "@/app/components/JsonLd";
+import { breadcrumbSchema, PERSON_ID, SITE_URL } from "@/lib/seo";
 
 export const dynamicParams = false;
 
@@ -12,7 +14,7 @@ export function generateStaticParams() {
 
 export function generateMetadata({ params }: { params: { slug: string } }): Metadata {
   const project = projects.find((item) => item.slug === params.slug);
-  return project ? { title: `${project.title} | Danish Shahzad`, description: project.problem } : {};
+  return project ? { title: `${project.title} | Danish Shahzad`, description: project.problem, alternates: { canonical: `/projects/${project.slug}` }, openGraph: { title: project.title, description: project.problem, url: `${SITE_URL}/projects/${project.slug}`, type: "article" } } : {};
 }
 
 export default function ProjectDetailPage({ params }: { params: { slug: string } }) {
@@ -21,6 +23,8 @@ export default function ProjectDetailPage({ params }: { params: { slug: string }
 
   return (
     <main className="bg-white py-20 dark:bg-gray-900">
+      <JsonLd data={{ "@context": "https://schema.org", "@type": "CreativeWork", name: project.title, description: project.problem, url: `${SITE_URL}/projects/${project.slug}`, creator: { "@id": PERSON_ID }, keywords: project.technologies.join(", ") }} />
+      <JsonLd data={breadcrumbSchema([{ name: "Home", path: "" }, { name: "Projects", path: "/projects" }, { name: project.title }])} />
       <article className="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8">
         <Link href="/projects" className="inline-flex items-center gap-2 font-semibold text-primary">
           <ArrowLeft size={18} aria-hidden="true" /> Back to Projects

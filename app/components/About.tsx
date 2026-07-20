@@ -67,6 +67,7 @@ const About: React.FC = () => (
               alt="Danish Shahzad, Agentic AI Engineer and Data Scientist"
               fill
               priority
+              sizes="(max-width: 1024px) 100vw, 42vw"
               className="object-cover"
             />
             <div className="absolute inset-0 bg-gradient-to-t from-gray-950/70 via-transparent to-transparent" />

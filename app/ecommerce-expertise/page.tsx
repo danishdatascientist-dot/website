@@ -4,7 +4,7 @@ import { ArrowRight } from "lucide-react";
 import { ecommerceAreas, ecommerceDataConnections, marketplaceTools } from "@/data/ecommerceExpertise";
 
 export const metadata: Metadata = {
-  title: "E-Commerce Expertise | Danish Shahzad",
+  title: "Amazon Marketplace Analytics — Private Label & Wholesale",
   description: "Amazon marketplace analysis experience across private label, wholesale, product research, pricing, inventory, suppliers, and SKU reporting.",
 };
 

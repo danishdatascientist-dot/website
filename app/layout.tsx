@@ -9,53 +9,62 @@ import {
   RouteBackNavigation,
   RoutePageNavigation,
 } from "./components/navigation/RouteNavigation";
+import { PERSON_ID, SITE_URL } from "@/lib/seo";
 
 const inter = Inter({ subsets: ["latin"] });
-const siteUrl = "https://danishshahzadai.com";
-
 export const metadata = {
-  metadataBase: new URL(siteUrl),
-  title: "Danish Shahzad | Agentic AI Engineer & Data Scientist",
+  metadataBase: new URL(SITE_URL),
+  title: "Agentic AI Engineer & Data Scientist | Danish Shahzad",
   description:
-    "Danish Shahzad — Agentic AI Engineer & Data Scientist building practical agentic AI, RAG, machine learning, analytics, and automation solutions.",
+    "Agentic AI Engineer building RAG systems, AI agents and analytics that solve real business problems. View projects, services and 1:1 AI tutoring.",
   other: {
     "contact:email": contactDetails.email,
   },
   alternates: {
-    canonical: "/",
+    canonical: "./",
   },
   openGraph: {
-    title: "Danish Shahzad | Agentic AI Engineer & Data Scientist",
+    title: "Agentic AI Engineer & Data Scientist | Danish Shahzad",
     description:
       "Agentic AI, generative AI, data science, machine learning, analytics, automation, RAG systems, and intelligent application portfolio.",
-    url: siteUrl,
+    url: SITE_URL,
     siteName: "Danish Shahzad",
+    locale: "en_GB",
+    images: [{ url: "/opengraph-image", width: 1200, height: 630, alt: "Danish Shahzad — Agentic AI Engineer & Data Scientist" }],
     type: "website",
   },
   twitter: {
     card: "summary_large_image",
-    title: "Danish Shahzad | Agentic AI Engineer & Data Scientist",
+    title: "Agentic AI Engineer & Data Scientist | Danish Shahzad",
     description:
       "Agentic AI, generative AI, data science, machine learning, analytics, automation, and intelligent application portfolio.",
+    images: ["/opengraph-image"],
   },
 };
 
 const personStructuredData = {
   "@context": "https://schema.org",
-  "@type": "Person",
-  name: contactDetails.name,
-  jobTitle: "Agentic AI Engineer & Data Scientist",
-  url: siteUrl,
-  email: contactDetails.email,
-  homeLocation: {
-    "@type": "Place",
-    name: contactDetails.location,
+  "@type": "ProfilePage",
+  url: SITE_URL,
+  mainEntity: {
+    "@type": "Person",
+    "@id": PERSON_ID,
+    name: contactDetails.name,
+    jobTitle: "Agentic AI Engineer & Data Scientist",
+    url: SITE_URL,
+    email: contactDetails.email,
+    image: `${SITE_URL}/datascientist.jpg`,
+    description: "Agentic AI Engineer and Data Scientist building RAG systems, AI agents, machine learning models, and e-commerce analytics solutions.",
+    homeLocation: { "@type": "Place", name: contactDetails.location },
+    sameAs: [contactDetails.linkedin, contactDetails.github, contactDetails.youtube],
+    knowsAbout: ["Agentic AI", "Retrieval-Augmented Generation", "LangChain", "LangGraph", "Model Context Protocol", "Machine Learning", "Deep Learning", "Python", "Data Analytics", "Amazon Marketplace Analytics", "FastAPI", "Streamlit"],
+    alumniOf: { "@type": "CollegeOrUniversity", name: "NED University of Engineering and Technology" },
+    hasCredential: [
+      { "@type": "EducationalOccupationalCredential", name: "Certified Cloud Native Applied Generative AI Engineer", credentialCategory: "certificate", recognizedBy: { "@type": "Organization", name: "PIAIC" } },
+      { "@type": "EducationalOccupationalCredential", name: "Machine Learning", credentialCategory: "certificate", recognizedBy: { "@type": "Organization", name: "Stanford Online" } },
+      { "@type": "EducationalOccupationalCredential", name: "Introduction to Programming Using Python", credentialCategory: "certificate", recognizedBy: { "@type": "Organization", name: "Microsoft" } },
+    ],
   },
-  sameAs: [
-    contactDetails.linkedin,
-    contactDetails.github,
-    contactDetails.youtube,
-  ],
 };
 
 export default function RootLayout({
